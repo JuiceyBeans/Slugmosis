@@ -115,9 +115,6 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
-    maven { // Registrate
-        url "https://maven.tterrag.com/"
-    }
     maven { // CF
         url "https://www.cursemaven.com"
     }
@@ -133,11 +130,8 @@ dependencies {
 
     runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
 
-    implementation fg.deobf("com.tterrag.registrate:Registrate:${project.registrate_version}")
     // Commented out temporarily since it causes runClient to crash
     //implementation ("curse.maven:configuration-444699:${project.configuration_version}")
-
-    jarJar(group: 'com.tterrag.registrate', name: 'Registrate', version: "[MC1.20.1,MC1.21)")
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
