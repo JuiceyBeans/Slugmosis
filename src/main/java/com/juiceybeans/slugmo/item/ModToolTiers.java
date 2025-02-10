@@ -15,5 +15,5 @@ public class ModToolTiers {
     public static final Tier VESPERTINE = TierSortingRegistry.registerTier(
             new ForgeTier(4, 2671, 1.5F, 4.0F, 25,
                     NEEDS_NETHERITE_TOOL, () -> Ingredient.of(ModItems.VESPERTINE.get())),
-            Slugmo.id("vespartine"), List.of(Tiers.DIAMOND), List.of());
+            Slugmo.id("vespertine"), List.of(Tiers.DIAMOND), List.of());
 }
