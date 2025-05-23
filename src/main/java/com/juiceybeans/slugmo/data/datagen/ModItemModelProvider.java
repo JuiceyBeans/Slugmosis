@@ -23,6 +23,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.VESPERTINE_PICKAXE);
         simpleItem(ModItems.VESPERTINE_SHOVEL);
         simpleItem(ModItems.VESPERTINE_SWORD);
+        simpleItem(ModItems.VESPERTINE_ARMOR_HELMET);
+        simpleItem(ModItems.VESPERTINE_ARMOR_CHESTPLATE);
+        simpleItem(ModItems.VESPERTINE_ARMOR_LEGGINGS);
+        simpleItem(ModItems.VESPERTINE_ARMOR_BOOTS);
+        simpleItem(ModItems.SKYREAVER);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> itemRegistryObject) {
