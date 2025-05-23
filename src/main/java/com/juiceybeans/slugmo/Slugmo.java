@@ -44,6 +44,8 @@ public class Slugmo {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
+        MinecraftForge.EVENT_BUS.register(ModCapabilities.class);
+        MinecraftForge.EVENT_BUS.register(PlayerRage.class);
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
