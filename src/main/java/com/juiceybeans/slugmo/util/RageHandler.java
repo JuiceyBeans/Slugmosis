@@ -64,7 +64,10 @@ public class RageHandler {
             Minecraft mc = Minecraft.getInstance();
             var player = mc.player;
 
-            //todo figure out keybinds
+            if (ModKeybinds.UNLEASH_RAGE_MAPPING.get().consumeClick() && player != null) {
+                Slugmo.LOGGER.debug("Keybind pressed");
+                unleashRage(player);
+            }
         }
     }
 

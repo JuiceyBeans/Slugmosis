@@ -35,6 +35,8 @@ public class Slugmo {
         ModItems.register(eventBus);
         ModBlocks.register(eventBus);
 
+        eventBus.register(ModKeybinds.class);;
+
         eventBus.addListener(this::commonSetup);
         eventBus.addListener(this::clientSetup);
 
