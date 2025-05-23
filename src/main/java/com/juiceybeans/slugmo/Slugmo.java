@@ -1,11 +1,19 @@
 package com.juiceybeans.slugmo;
 
+import com.juiceybeans.slugmo.block.ModBlocks;
+import com.juiceybeans.slugmo.capability.ModCapabilities;
+import com.juiceybeans.slugmo.capability.PlayerRage;
+import com.juiceybeans.slugmo.util.RageHandler;
+import com.juiceybeans.slugmo.event.RenderRageOverlayEvent;
 import com.juiceybeans.slugmo.item.ModItems;
 import com.mojang.logging.LogUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
@@ -25,19 +33,20 @@ public class Slugmo {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModItems.register(eventBus);
+        ModBlocks.register(eventBus);
 
         eventBus.addListener(this::commonSetup);
+        eventBus.addListener(this::clientSetup);
 
         MinecraftForge.EVENT_BUS.register(this);
+
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
     }
 
-    public static void debugLine(String debugText) {
-        if (isClientSide()) {
-            Slugmo.LOGGER.info("DEBUG: " + debugText);
-        }
+    private void clientSetup(final FMLClientSetupEvent event) {
     }
 
     /**
