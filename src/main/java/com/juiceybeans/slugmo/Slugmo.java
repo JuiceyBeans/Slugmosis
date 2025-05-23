@@ -1,10 +1,6 @@
 package com.juiceybeans.slugmo;
 
 import com.juiceybeans.slugmo.block.ModBlocks;
-import com.juiceybeans.slugmo.capability.ModCapabilities;
-import com.juiceybeans.slugmo.capability.PlayerRage;
-import com.juiceybeans.slugmo.util.RageHandler;
-import com.juiceybeans.slugmo.event.RenderRageOverlayEvent;
 import com.juiceybeans.slugmo.item.ModItems;
 import com.mojang.logging.LogUtils;
 import net.minecraft.resources.ResourceLocation;
