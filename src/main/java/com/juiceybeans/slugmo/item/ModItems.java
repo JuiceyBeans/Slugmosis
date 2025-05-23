@@ -10,7 +10,6 @@ import net.minecraftforge.registries.RegistryObject;
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Slugmo.MOD_ID);
 
-
     // Materials
     public static final RegistryObject<Item> VESPERTINE = ITEMS.register("vespertine", () -> new Item(
             new Item.Properties().rarity(Rarity.UNCOMMON)));

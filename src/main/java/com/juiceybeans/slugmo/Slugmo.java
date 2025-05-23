@@ -6,6 +6,7 @@ import com.juiceybeans.slugmo.capability.PlayerRage;
 import com.juiceybeans.slugmo.util.RageHandler;
 import com.juiceybeans.slugmo.event.RenderRageOverlayEvent;
 import com.juiceybeans.slugmo.item.ModItems;
+import com.juiceybeans.slugmo.tab.ModTabs;
 import com.mojang.logging.LogUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -34,6 +35,7 @@ public class Slugmo {
 
         ModItems.register(eventBus);
         ModBlocks.register(eventBus);
+        ModTabs.register(eventBus);
 
         eventBus.register(ModKeybinds.class);;
 
