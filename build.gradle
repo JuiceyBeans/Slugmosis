@@ -85,6 +85,13 @@ repositories {
         // EMI
         url "https://maven.terraformersmc.com"
     }
+    maven { // GeckoLib
+        url "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/"
+        content {
+            includeGroupByRegex("software\\.bernie.*")
+            includeGroup("com.eliotlash.mclib")
+        }
+    }
     mavenLocal()
 }
 
@@ -92,11 +99,13 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     annotationProcessor "org.spongepowered:mixin:0.8.7:processor"
 
-    runtimeOnly fg.deobf("dev.emi:emi-forge:${emi_version}+${minecraft_version}")
-    runtimeOnly fg.deobf("maven.modrinth:jade:${jade_version}+forge")
-
     // Commented out temporarily since it causes runClient to crash
     //implementation ("curse.maven:configuration-444699:${project.configuration_version}")
+    implementation fg.deobf("software.bernie.geckolib:geckolib-forge-${minecraft_version}:${geckolib_version}")
+    implementation("com.eliotlash.mclib:mclib:20")
+
+    runtimeOnly fg.deobf("dev.emi:emi-forge:${emi_version}+${minecraft_version}")
+    runtimeOnly fg.deobf("maven.modrinth:jade:${jade_version}+forge")
 }
 
 mixin {
