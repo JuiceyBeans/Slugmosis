@@ -52,6 +52,7 @@ public class Slugmo {
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
+        MinecraftForge.EVENT_BUS.register(RenderRageOverlayEvent.class);
     }
 
     /**
