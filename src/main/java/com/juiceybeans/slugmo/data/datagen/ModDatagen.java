@@ -32,5 +32,6 @@ public class ModDatagen {
 
         generator.addProvider(event.includeClient(), new ModLangProvider(packOutput, "en_us") {});
         generator.addProvider(event.includeServer(), new ModLootTableProvider(packOutput));
+        generator.addProvider(event.includeServer(), new ModGLMProvider(packOutput));
     }
 }
