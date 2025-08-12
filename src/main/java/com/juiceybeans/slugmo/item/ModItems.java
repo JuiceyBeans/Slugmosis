@@ -1,14 +1,36 @@
 package com.juiceybeans.slugmo.item;
 
 import com.juiceybeans.slugmo.Slugmo;
+import com.juiceybeans.slugmo.block.ModBlocks;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Slugmo.MOD_ID);
+
+    // Items
+    public static final RegistryObject<Item> SLUGMO_BEANS = ITEMS.register("slugmo_beans", () -> new ItemNameBlockItem(
+            ModBlocks.SLUGMO_BEANS.get(), new Item.Properties().food(
+                    new FoodProperties.Builder()
+                            .nutrition(3)
+                            .saturationMod(0.5f)
+                            .build())));
+
+    public static final RegistryObject<Item> SHIMMERING_SLUGMO_BEANS = ITEMS.register("shimmering_slugmo_beans", () -> new Item(
+            new Item.Properties().rarity(Rarity.UNCOMMON).food(
+                    new FoodProperties.Builder()
+                            .nutrition(5)
+                            .saturationMod(1f)
+                            .effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60), 1)
+                            .build())
+    ));
 
     // Materials
     public static final RegistryObject<Item> VESPERTINE = ITEMS.register("vespertine", () -> new Item(

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "slugmo:block/slugmo_beans_stage0"
+    },
+    "age=1": {
+      "model": "slugmo:block/slugmo_beans_stage1"
+    },
+    "age=2": {
+      "model": "slugmo:block/slugmo_beans_stage2"
+    },
+    "age=3": {
+      "model": "slugmo:block/slugmo_beans_stage3"
+    }
+  }
+}
