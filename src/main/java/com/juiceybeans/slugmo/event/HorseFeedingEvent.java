@@ -1,11 +1,9 @@
 package com.juiceybeans.slugmo.event;
 
-import com.juiceybeans.slugmo.Slugmo;
 import com.juiceybeans.slugmo.item.ModItems;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
