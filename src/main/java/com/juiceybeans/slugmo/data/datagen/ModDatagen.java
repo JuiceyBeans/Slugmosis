@@ -22,18 +22,15 @@ public class ModDatagen {
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
         generator.addProvider(event.includeServer(), new ModRecipeProvider(packOutput));
-
         generator.addProvider(event.includeClient(), new ModBlockStateProvider(packOutput, existingFileHelper));
-
         generator.addProvider(event.includeClient(), new ModItemModelProvider(packOutput, existingFileHelper));
 
         ModBlockTagProvider blockTagProvider = generator.addProvider(event.includeServer(),
                 new ModBlockTagProvider(packOutput, lookupProvider, existingFileHelper));
-
         generator.addProvider(event.includeServer(),
                 new ModItemTagProvider(packOutput, lookupProvider, blockTagProvider.contentsGetter(), existingFileHelper));
 
-        generator.addProvider(event.includeClient(), new ModLangProvider(packOutput, "en_us") {
-        });
+        generator.addProvider(event.includeClient(), new ModLangProvider(packOutput, "en_us") {});
+        generator.addProvider(event.includeServer(), new ModLootTableProvider(packOutput));
     }
 }
