@@ -19,7 +19,7 @@ description = '''${mod_description}'''
 [[dependencies."${mod_id}"]]
 modId = "geckolib"
 mandatory = true
-versionRange = "${geckolib_version}"
+versionRange = "${geckolib_version_range}"
 ordering = "BEFORE"
 side = "BOTH"
 
