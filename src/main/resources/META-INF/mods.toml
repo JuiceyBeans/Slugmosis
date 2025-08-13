@@ -11,10 +11,17 @@ displayName = "${mod_name}"
 #updateJSONURL="https://change.me.example.invalid/updates.json" #optional
 displayURL="https://github.com/JuiceyBeans/Slugmo"
 logoFile="icon.png"
-credits="Thanks for this example mod goes to Java"
+credits="GregTech CEu Modern developers, Friendship & Love Club, TheOnlyRosalyn"
 authors = "${mod_authors}"
 displayTest="MATCH_VERSION"
 description = '''${mod_description}'''
+
+[[dependencies."${mod_id}"]]
+modId = "geckolib"
+mandatory = true
+versionRange = "${geckolib_version}"
+ordering = "BEFORE"
+side = "BOTH"
 
 [[dependencies."${mod_id}"]]
 modId = "forge"
