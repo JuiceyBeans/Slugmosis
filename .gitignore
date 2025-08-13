@@ -10,17 +10,11 @@ out/
 # mpeltonen/sbt-idea plugin
 .idea_modules/
 
-# JIRA plugin
-atlassian-ide-plugin.xml
-
 # Compiled class file
 *.class
 
 # Log file
 *.log
-
-# BlueJ files
-*.ctxt
 
 # Package Files #
 *.jar
@@ -118,4 +112,10 @@ run-data/
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
 !gradle-wrapper.jar
 
+# Datagen cache
 src/generated/resources/.cache/
+
+# Art files
+*.xcf
+*.ase
+*.bbmodel
