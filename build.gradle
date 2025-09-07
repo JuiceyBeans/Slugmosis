@@ -75,18 +75,17 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
-    maven { // CF
+    maven { // CurseForge
         url "https://www.cursemaven.com"
     }
     maven { // Modrinth
         url "https://api.modrinth.com/maven"
     }
-    maven {
-        // EMI
+    maven { // EMI
         url "https://maven.terraformersmc.com"
     }
     maven { // GeckoLib
-        url "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/"
+        url "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven"
         content {
             includeGroupByRegex("software\\.bernie.*")
             includeGroup("com.eliotlash.mclib")
@@ -125,7 +124,7 @@ tasks.named('processResources', ProcessResources).configure {
             loader_version_range   : loader_version_range,
             mod_id                 : mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
             mod_authors            : mod_authors, mod_description: mod_description,
-            geckolib_version_range : "[4.7.0, ${geckolib_version}]"
+            geckolib_version_range : "[4.0, 5.0)"
     ]
 
     inputs.properties replaceProperties

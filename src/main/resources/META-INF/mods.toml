@@ -1,14 +1,13 @@
 modLoader = "javafml"
 loaderVersion = "${loader_version_range}"
 license = "${mod_license}"
-issueTrackerURL="https://github.com/JuiceyBeans/Slugmo/issues"
+issueTrackerURL="https://github.com/JuiceyBeans/Slugmosis/issues"
 
 [[mods]]
 modId = "${mod_id}"
 version = "${mod_version}"
 displayName = "${mod_name}"
-# A URL to query for updates for this mod. See the JSON update specification https://docs.minecraftforge.net/en/latest/misc/updatechecker/
-#updateJSONURL="https://change.me.example.invalid/updates.json" #optional
+updateJSONURL="https://api.modrinth.com/updates/slugmosis/forge_updates.json"
 displayURL="https://github.com/JuiceyBeans/Slugmo"
 logoFile="icon.png"
 credits="GregTech CEu Modern developers, Friendship & Love Club, TheOnlyRosalyn"
