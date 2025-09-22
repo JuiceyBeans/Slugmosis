@@ -32,6 +32,7 @@ public class Slugmo {
         ModItems.register(eventBus);
         ModBlocks.register(eventBus);
         ModTabs.register(eventBus);
+        eventBus.register(ModKeybinds.class);;
 
         eventBus.addListener(this::commonSetup);
         eventBus.addListener(this::clientSetup);
@@ -42,9 +43,13 @@ public class Slugmo {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
+        MinecraftForge.EVENT_BUS.register(ModCapabilities.class);
+        MinecraftForge.EVENT_BUS.register(RageHandler.class);
+        MinecraftForge.EVENT_BUS.register(PlayerRage.class);
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
+        MinecraftForge.EVENT_BUS.register(RenderRageOverlayEvent.class);
     }
 
     /**
