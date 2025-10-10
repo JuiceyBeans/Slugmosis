@@ -3,6 +3,7 @@ package com.juiceybeans.slugmo.block;
 import com.juiceybeans.slugmo.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
@@ -56,6 +57,15 @@ public class GlowshroomStemCrop extends CropBlock {
 
     @Override
     protected int getBonemealAgeIncrease(Level pLevel) {
-        return Mth.nextInt(pLevel.random, 1, 3);
+        return Mth.nextInt(pLevel.random, 1, 2);
+    }
+
+    @Override
+    public int getLightEmission(BlockState state, BlockGetter level, BlockPos pos) {
+        return switch (state.getValue(AGE)) {
+            case 2 -> 4;
+            case 3 -> 9;
+            default -> 0;
+        };
     }
 }
