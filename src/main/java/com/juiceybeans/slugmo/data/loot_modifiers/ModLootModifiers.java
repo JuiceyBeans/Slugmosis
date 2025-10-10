@@ -1,7 +1,6 @@
-package com.juiceybeans.slugmo.data;
+package com.juiceybeans.slugmo.data.loot_modifiers;
 
 import com.juiceybeans.slugmo.Slugmo;
-import com.juiceybeans.slugmo.data.loot_modifiers.InjectItemModifier;
 import com.mojang.serialization.Codec;
 import net.minecraftforge.common.loot.IGlobalLootModifier;
 import net.minecraftforge.eventbus.api.IEventBus;
