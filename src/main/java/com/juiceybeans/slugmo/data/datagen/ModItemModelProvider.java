@@ -30,17 +30,18 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.VESPERTINE_ARMOR_BOOTS);
         simpleItem(ModItems.SLUGMO_BEANS);
         simpleItem(ModItems.SHIMMERING_SLUGMO_BEANS);
+        simpleItem(ModItems.GLOWSHROOM_STEM);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> itemRegistryObject) {
         return withExistingParent(itemRegistryObject.getId().getPath(),
-                new ResourceLocation("item/generated")).texture("layer0",
+                ResourceLocation.parse("item/generated")).texture("layer0",
                 Slugmo.id("item/" + itemRegistryObject.getId().getPath()));
     }
 
     private ItemModelBuilder handheldItem(RegistryObject<Item> itemRegistryObject) {
         return withExistingParent(itemRegistryObject.getId().getPath(),
-                new ResourceLocation("item/handheld")).texture("layer0",
-                new ResourceLocation(Slugmo.MOD_ID, "item/" + itemRegistryObject.getId().getPath()));
+                ResourceLocation.parse("item/handheld")).texture("layer0",
+                Slugmo.id("item/" + itemRegistryObject.getId().getPath()));
     }
 }
