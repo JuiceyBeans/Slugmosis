@@ -1,6 +1,7 @@
 package com.juiceybeans.slugmo.data.datagen;
 
 import com.juiceybeans.slugmo.Slugmo;
+import com.juiceybeans.slugmo.block.GlowshroomStemCrop;
 import com.juiceybeans.slugmo.block.ModBlocks;
 import com.juiceybeans.slugmo.block.SlugmoBeanBlock;
 import net.minecraft.data.PackOutput;
@@ -20,7 +21,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        this.stageBlock(ModBlocks.SLUGMO_BEANS.get(), SlugmoBeanBlock.AGE);
+        this.squareStageBlock(ModBlocks.SLUGMO_BEANS.get(), SlugmoBeanBlock.AGE);
+        this.crossStageBlock(ModBlocks.GLOWSHROOM_STEM.get(), GlowshroomStemCrop.AGE);
     }
 
     private String getBlockName(Block block) {
@@ -28,14 +30,26 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
 
     // Shoutout Farmer's Delight for this method
-    public void stageBlock(Block block, IntegerProperty ageProperty, Property<?>... ignored) {
+    public void squareStageBlock(Block block, IntegerProperty ageProperty, Property<?>... ignored) {
         getVariantBuilder(block)
                 .forAllStatesExcept(state -> {
                     int ageSuffix = state.getValue(ageProperty);
                     String stageName = getBlockName(block) + "_stage" + ageSuffix;
                     return ConfiguredModel.builder().modelFile(models()
-                            .crop(stageName, Slugmo.id("block/" + stageName))
-                            .renderType("cutout"))
+                                    .crop(stageName, Slugmo.id("block/" + stageName))
+                                    .renderType("cutout"))
+                            .build();
+                }, ignored);
+    }
+
+    public void crossStageBlock(Block block, IntegerProperty ageProperty, Property<?>... ignored) {
+        getVariantBuilder(block)
+                .forAllStatesExcept(state -> {
+                    int ageSuffix = state.getValue(ageProperty);
+                    String stageName = getBlockName(block) + "_stage" + ageSuffix;
+                    return ConfiguredModel.builder().modelFile(models()
+                                    .cross(stageName, Slugmo.id("block/" + stageName))
+                                    .renderType("cutout"))
                             .build();
                 }, ignored);
     }

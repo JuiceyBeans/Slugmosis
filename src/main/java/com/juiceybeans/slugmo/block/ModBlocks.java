@@ -29,6 +29,16 @@ public class ModBlocks {
         return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
+    public static final RegistryObject<Block> GLOWSHROOM_STEM = BLOCKS.register("glowshroom_stem", () ->
+            new GlowshroomStemCrop(
+                    BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.PLANT)
+                            .noCollission()
+                            .randomTicks()
+                            .instabreak()
+                            .sound(SoundType.CROP)
+                            .pushReaction(PushReaction.DESTROY)));
+  
     public static final RegistryObject<Block> SLUGMO_BEANS = BLOCKS.register("slugmo_beans", () ->
             new SlugmoBeanBlock(
                     BlockBehaviour.Properties.of()

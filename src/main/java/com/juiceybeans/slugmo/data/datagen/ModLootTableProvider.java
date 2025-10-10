@@ -3,6 +3,7 @@ package com.juiceybeans.slugmo.data.datagen;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.juiceybeans.slugmo.Slugmo;
+import com.juiceybeans.slugmo.block.GlowshroomStemCrop;
 import com.juiceybeans.slugmo.block.ModBlocks;
 import com.juiceybeans.slugmo.block.SlugmoBeanBlock;
 import com.juiceybeans.slugmo.item.ModItems;
@@ -65,6 +66,17 @@ public class ModLootTableProvider extends LootTableProvider {
                             .add(LootItem.lootTableItem(ModItems.SHIMMERING_SLUGMO_BEANS.get())
                                     .when(LootItemRandomChanceCondition.randomChance(0.01F))))));
 
+            LootItemCondition.Builder glowshroomStemLootItemCondition = LootItemBlockStatePropertyCondition
+                    .hasBlockStateProperties(ModBlocks.GLOWSHROOM_STEM.get())
+                    .setProperties(StatePropertiesPredicate.Builder.properties()
+                            .hasProperty(GlowshroomStemCrop.AGE, 3));
+
+            this.add(ModBlocks.GLOWSHROOM_STEM.get(), this.applyExplosionDecay(ModBlocks.GLOWSHROOM_STEM.get(), LootTable.lootTable()
+                    .withPool(LootPool.lootPool().add(LootItem.lootTableItem(ModItems.GLOWSHROOM_STEM.get())))
+                    .withPool(LootPool.lootPool().when(glowshroomStemLootItemCondition)
+                            .add(LootItem.lootTableItem(Items.GLOWSTONE_DUST)
+                                    .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE,
+                                            0.5714286F, 3))))));
         }
 
         @Override

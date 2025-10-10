@@ -16,6 +16,9 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Slugmo.MOD_ID);
 
     // Items
+    public static final RegistryObject<Item> GLOWSHROOM_STEM = ITEMS.register("glowshroom_stem", () -> new ItemNameBlockItem(
+            ModBlocks.GLOWSHROOM_STEM.get(), new Item.Properties()));
+
     public static final RegistryObject<Item> SLUGMO_BEANS = ITEMS.register("slugmo_beans", () -> new ItemNameBlockItem(
             ModBlocks.SLUGMO_BEANS.get(), new Item.Properties().food(
                     new FoodProperties.Builder()
