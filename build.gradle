@@ -75,18 +75,17 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
-    maven { // CF
+    maven { // CurseForge
         url "https://www.cursemaven.com"
     }
     maven { // Modrinth
         url "https://api.modrinth.com/maven"
     }
-    maven {
-        // EMI
+    maven { // EMI
         url "https://maven.terraformersmc.com"
     }
     maven { // GeckoLib
-        url "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/"
+        url "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven"
         content {
             includeGroupByRegex("software\\.bernie.*")
             includeGroup("com.eliotlash.mclib")
@@ -102,14 +101,13 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     annotationProcessor "org.spongepowered:mixin:0.8.7:processor"
 
-    // Commented out temporarily since it causes runClient to crash
-    //implementation ("curse.maven:configuration-444699:${project.configuration_version}")
+    implementation ("curse.maven:configuration-444699:${project.configuration_version}")
     implementation fg.deobf("software.bernie.geckolib:geckolib-forge-${minecraft_version}:${geckolib_version}")
     implementation("com.eliotlash.mclib:mclib:20")
 
     runtimeOnly fg.deobf("dev.emi:emi-forge:${emi_version}+${minecraft_version}")
     runtimeOnly fg.deobf("maven.modrinth:jade:${jade_version}+forge")
-    //runtimeOnly fg.deobf("squeek.appleskin:appleskin-forge:${appleskin_version}")
+    runtimeOnly fg.deobf("squeek.appleskin:appleskin-forge:${appleskin_version}")
 }
 
 mixin {
@@ -119,11 +117,14 @@ mixin {
 }
 
 tasks.named('processResources', ProcessResources).configure {
-    var replaceProperties = [minecraft_version   : minecraft_version, minecraft_version_range: minecraft_version_range,
-                             forge_version       : forge_version, forge_version_range: forge_version_range,
-                             loader_version_range: loader_version_range,
-                             mod_id              : mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
-                             mod_authors         : mod_authors, mod_description: mod_description,]
+    var replaceProperties = [
+            minecraft_version      : minecraft_version, minecraft_version_range: minecraft_version_range,
+            forge_version          : forge_version, forge_version_range: forge_version_range,
+            loader_version_range   : loader_version_range,
+            mod_id                 : mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
+            mod_authors            : mod_authors, mod_description: mod_description,
+            geckolib_version_range : "[4.0, 5.0)"
+    ]
 
     inputs.properties replaceProperties
 

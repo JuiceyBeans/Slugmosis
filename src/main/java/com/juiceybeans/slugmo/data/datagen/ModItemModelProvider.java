@@ -17,25 +17,30 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
+        handheldItem(ModItems.SKYREAVER);
+        handheldItem(ModItems.VESPERTINE_AXE);
+        handheldItem(ModItems.VESPERTINE_HOE);
+        handheldItem(ModItems.VESPERTINE_PICKAXE);
+        handheldItem(ModItems.VESPERTINE_SHOVEL);
+        handheldItem(ModItems.VESPERTINE_SWORD);
         simpleItem(ModItems.VESPERTINE);
-        simpleItem(ModItems.VESPERTINE_AXE);
-        simpleItem(ModItems.VESPERTINE_HOE);
-        simpleItem(ModItems.VESPERTINE_PICKAXE);
-        simpleItem(ModItems.VESPERTINE_SHOVEL);
-        simpleItem(ModItems.VESPERTINE_SWORD);
         simpleItem(ModItems.VESPERTINE_ARMOR_HELMET);
         simpleItem(ModItems.VESPERTINE_ARMOR_CHESTPLATE);
         simpleItem(ModItems.VESPERTINE_ARMOR_LEGGINGS);
         simpleItem(ModItems.VESPERTINE_ARMOR_BOOTS);
-        simpleItem(ModItems.SKYREAVER);
         simpleItem(ModItems.SLUGMO_BEANS);
         simpleItem(ModItems.SHIMMERING_SLUGMO_BEANS);
-
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> itemRegistryObject) {
         return withExistingParent(itemRegistryObject.getId().getPath(),
                 new ResourceLocation("item/generated")).texture("layer0",
                 Slugmo.id("item/" + itemRegistryObject.getId().getPath()));
+    }
+
+    private ItemModelBuilder handheldItem(RegistryObject<Item> itemRegistryObject) {
+        return withExistingParent(itemRegistryObject.getId().getPath(),
+                new ResourceLocation("item/handheld")).texture("layer0",
+                new ResourceLocation(Slugmo.MOD_ID, "item/" + itemRegistryObject.getId().getPath()));
     }
 }
