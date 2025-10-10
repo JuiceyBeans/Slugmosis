@@ -1,0 +1,10 @@
+{
+  "type": "slugmo:inject_item",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:gameplay/sniffer_digging"
+    }
+  ],
+  "item": "slugmo:slugmo_beans"
+}

@@ -101,14 +101,13 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     annotationProcessor "org.spongepowered:mixin:0.8.7:processor"
 
-    // Commented out temporarily since it causes runClient to crash
-    //implementation ("curse.maven:configuration-444699:${project.configuration_version}")
+    implementation ("curse.maven:configuration-444699:${project.configuration_version}")
     implementation fg.deobf("software.bernie.geckolib:geckolib-forge-${minecraft_version}:${geckolib_version}")
     implementation("com.eliotlash.mclib:mclib:20")
 
     runtimeOnly fg.deobf("dev.emi:emi-forge:${emi_version}+${minecraft_version}")
     runtimeOnly fg.deobf("maven.modrinth:jade:${jade_version}+forge")
-    runtimeOnly fg.deobf("squeek.appleskin:appleskin-forge:mc${minecraft_version}-${appleskin_version}")
+    runtimeOnly fg.deobf("squeek.appleskin:appleskin-forge:${appleskin_version}")
 }
 
 mixin {

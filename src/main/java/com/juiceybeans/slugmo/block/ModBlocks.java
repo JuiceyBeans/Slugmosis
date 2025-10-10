@@ -38,6 +38,16 @@ public class ModBlocks {
                             .instabreak()
                             .sound(SoundType.CROP)
                             .pushReaction(PushReaction.DESTROY)));
+  
+    public static final RegistryObject<Block> SLUGMO_BEANS = BLOCKS.register("slugmo_beans", () ->
+            new SlugmoBeanBlock(
+                    BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.PLANT)
+                            .noCollission()
+                            .randomTicks()
+                            .instabreak()
+                            .sound(SoundType.CROP)
+                            .pushReaction(PushReaction.DESTROY)));
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
