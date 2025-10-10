@@ -22,7 +22,7 @@ public class ModGLMProvider extends GlobalLootModifierProvider {
         this.add("slugmo_beans_from_sniffer_digging", new InjectItemModifier(
                 new LootItemCondition[] {
                         new LootTableIdCondition.Builder(
-                                new ResourceLocation("gameplay/sniffer_digging")
+                                ResourceLocation.parse("gameplay/sniffer_digging")
                         ).build()
                 },
                 ModItems.SLUGMO_BEANS.get()

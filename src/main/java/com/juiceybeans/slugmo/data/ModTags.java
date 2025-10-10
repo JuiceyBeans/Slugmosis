@@ -18,8 +18,8 @@ public class ModTags {
     }
 
     public static <T> TagKey<T> createTag(Registry<T> registry, String path, boolean vanilla) {
-        if (vanilla) return optionalTag(registry, new ResourceLocation("minecraft", path));
-        return optionalTag(registry, new ResourceLocation("forge", path));
+        if (vanilla) return optionalTag(registry, ResourceLocation.fromNamespaceAndPath("minecraft", path));
+        return optionalTag(registry, ResourceLocation.fromNamespaceAndPath("forge", path));
     }
 
     public static TagKey<Block> createBlockTag(String path) {
