@@ -1,6 +1,7 @@
 package com.juiceybeans.slugmo.data.datagen;
 
 import com.juiceybeans.slugmo.Slugmo;
+import com.juiceybeans.slugmo.block.GlowshroomStemCrop;
 import com.juiceybeans.slugmo.block.ModBlocks;
 import com.juiceybeans.slugmo.block.SlugmoBeanBlock;
 import net.minecraft.data.PackOutput;
@@ -21,6 +22,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         this.stageBlock(ModBlocks.SLUGMO_BEANS.get(), SlugmoBeanBlock.AGE);
+        this.stageBlock(ModBlocks.GLOWSHROOM_STEM.get(), GlowshroomStemCrop.AGE);
     }
 
     private String getBlockName(Block block) {
