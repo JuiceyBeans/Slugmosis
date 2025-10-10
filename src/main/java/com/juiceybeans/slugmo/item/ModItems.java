@@ -1,6 +1,7 @@
 package com.juiceybeans.slugmo.item;
 
 import com.juiceybeans.slugmo.Slugmo;
+import com.juiceybeans.slugmo.block.ModBlocks;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -9,6 +10,11 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Slugmo.MOD_ID);
+
+    // Items
+    public static final RegistryObject<Item> GLOWSHROOM_STEM = ITEMS.register("glowshroom_stem", () -> new ItemNameBlockItem(
+            ModBlocks.GLOWSHROOM_STEM.get(), new Item.Properties()));
+
 
     // Materials
     public static final RegistryObject<Item> VESPERTINE = ITEMS.register("vespertine", () -> new Item(
