@@ -1,7 +1,7 @@
 package com.juiceybeans.slugmo.data.datagen;
 
 import com.juiceybeans.slugmo.Slugmo;
-import com.juiceybeans.slugmo.block.GlowshroomStemCrop;
+import com.juiceybeans.slugmo.block.GlowshroomStemBlock;
 import com.juiceybeans.slugmo.block.ModBlocks;
 import com.juiceybeans.slugmo.block.SlugmoBeanBlock;
 import net.minecraft.data.PackOutput;
@@ -12,7 +12,6 @@ import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 
 public class ModBlockStateProvider extends BlockStateProvider {
     public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
@@ -22,7 +21,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         this.squareStageBlock(ModBlocks.SLUGMO_BEANS.get(), SlugmoBeanBlock.AGE);
-        this.crossStageBlock(ModBlocks.GLOWSHROOM_STEM.get(), GlowshroomStemCrop.AGE);
+        this.crossStageBlock(ModBlocks.GLOWSHROOM_STEM.get(), GlowshroomStemBlock.AGE);
     }
 
     private String getBlockName(Block block) {

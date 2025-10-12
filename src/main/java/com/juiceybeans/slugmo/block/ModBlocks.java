@@ -30,7 +30,7 @@ public class ModBlocks {
     }
 
     public static final RegistryObject<Block> GLOWSHROOM_STEM = BLOCKS.register("glowshroom_stem", () ->
-            new GlowshroomStemCrop(
+            new GlowshroomStemBlock(
                     BlockBehaviour.Properties.of()
                             .mapColor(MapColor.PLANT)
                             .noCollission()

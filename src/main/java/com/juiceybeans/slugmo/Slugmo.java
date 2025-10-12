@@ -4,6 +4,7 @@ import com.juiceybeans.slugmo.block.ModBlocks;
 import com.juiceybeans.slugmo.data.loot_modifiers.InjectItemModifier;
 import com.juiceybeans.slugmo.data.loot_modifiers.ModLootModifiers;
 import com.juiceybeans.slugmo.event.HorseFeedingEvent;
+import com.juiceybeans.slugmo.event.WorldgenModificationEvent;
 import com.juiceybeans.slugmo.item.ModItems;
 import com.juiceybeans.slugmo.tab.ModTabs;
 import com.mojang.logging.LogUtils;
@@ -50,6 +51,7 @@ public class Slugmo {
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         MinecraftForge.EVENT_BUS.register(HorseFeedingEvent.class);
+        MinecraftForge.EVENT_BUS.register(WorldgenModificationEvent.class);
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {

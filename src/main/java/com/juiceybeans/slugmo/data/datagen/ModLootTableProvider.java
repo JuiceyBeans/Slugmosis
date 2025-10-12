@@ -3,7 +3,7 @@ package com.juiceybeans.slugmo.data.datagen;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.juiceybeans.slugmo.Slugmo;
-import com.juiceybeans.slugmo.block.GlowshroomStemCrop;
+import com.juiceybeans.slugmo.block.GlowshroomStemBlock;
 import com.juiceybeans.slugmo.block.ModBlocks;
 import com.juiceybeans.slugmo.block.SlugmoBeanBlock;
 import com.juiceybeans.slugmo.item.ModItems;
@@ -16,7 +16,6 @@ import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.ValidationContext;
@@ -69,7 +68,7 @@ public class ModLootTableProvider extends LootTableProvider {
             LootItemCondition.Builder glowshroomStemLootItemCondition = LootItemBlockStatePropertyCondition
                     .hasBlockStateProperties(ModBlocks.GLOWSHROOM_STEM.get())
                     .setProperties(StatePropertiesPredicate.Builder.properties()
-                            .hasProperty(GlowshroomStemCrop.AGE, 3));
+                            .hasProperty(GlowshroomStemBlock.AGE, 3));
 
             this.add(ModBlocks.GLOWSHROOM_STEM.get(), this.applyExplosionDecay(ModBlocks.GLOWSHROOM_STEM.get(), LootTable.lootTable()
                     .withPool(LootPool.lootPool().add(LootItem.lootTableItem(ModItems.GLOWSHROOM_STEM.get())))
