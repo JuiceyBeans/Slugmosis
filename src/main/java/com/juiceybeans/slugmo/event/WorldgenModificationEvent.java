@@ -19,7 +19,7 @@ import java.util.List;
 public class WorldgenModificationEvent {
 
     /**
-     * Registries are frozen by this point
+     * Datapack registries are loaded by this point
      * So we can inject our custom worldgen stuff here to maintain compat with vanilla and other mods
      */
     @SubscribeEvent
