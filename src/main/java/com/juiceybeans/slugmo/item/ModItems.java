@@ -31,7 +31,7 @@ public class ModItems {
                     new FoodProperties.Builder()
                             .nutrition(5)
                             .saturationMod(1f)
-                            .effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60), 1)
+                            .effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60 * 20), 1)
                             .build())
     ));
 
