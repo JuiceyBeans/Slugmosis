@@ -14,7 +14,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import java.util.UUID;
 
 public class HorseFeedingEvent {
-    private static final UUID SLUGMO_MODIFIER_UUID = UUID.fromString("57CA8086-4438-4426-A56B-25376144A04D");
+    private static final UUID HORSE_SLUGMO_MODIFIER_UUID = UUID.fromString("57CA8086-4438-4426-A56B-25376144A04D");
 
     @SubscribeEvent
     public static void onHorseFed(PlayerInteractEvent.EntityInteract event) {
@@ -27,7 +27,7 @@ public class HorseFeedingEvent {
                 var rand = level.getRandom();
                 var i = rand.nextInt(2, 10);
                 var speed = horse.getAttribute(Attributes.MOVEMENT_SPEED);
-                var speedModifier = new AttributeModifier(SLUGMO_MODIFIER_UUID, "Slugmo Bean bonus",
+                var speedModifier = new AttributeModifier(HORSE_SLUGMO_MODIFIER_UUID, "Slugmo Bean bonus",
                         (double) i /10, AttributeModifier.Operation.MULTIPLY_BASE);
 
                 if (!speed.hasModifier(speedModifier)) {
@@ -44,8 +44,7 @@ public class HorseFeedingEvent {
                         );
                     }
 
-                    item.shrink(1);
-                    level.playSound(null, event.getPos(), SoundEvents.HORSE_EAT, SoundSource.NEUTRAL);
+                    horse.eat(level, item);
 
                     var result = level.isClientSide() ? InteractionResult.CONSUME : InteractionResult.SUCCESS;
                     event.setCancellationResult(result);
