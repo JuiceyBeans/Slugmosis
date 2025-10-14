@@ -4,7 +4,9 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "slugmo.refmap.json",
   "minVersion": "0.8",
+  "plugin": "com.juiceybeans.slugmo.mixin.SlugmoMixinPlugin",
   "mixins": [
+    "JadeHorseMixin"
   ],
   "client": [
   ],

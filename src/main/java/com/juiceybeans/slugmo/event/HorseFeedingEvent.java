@@ -2,8 +2,7 @@ package com.juiceybeans.slugmo.event;
 
 import com.juiceybeans.slugmo.item.ModItems;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -11,10 +10,19 @@ import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 public class HorseFeedingEvent {
     private static final UUID HORSE_SLUGMO_MODIFIER_UUID = UUID.fromString("57CA8086-4438-4426-A56B-25376144A04D");
+    private static final SimpleWeightedRandomList<Object> weightedProbability = new SimpleWeightedRandomList.Builder<>()
+            .add(1.0, 4)
+            .add(2.0, 3)
+            .add(3.0, 2)
+            .add(4.0, 1)
+            .build();
 
     @SubscribeEvent
     public static void onHorseFed(PlayerInteractEvent.EntityInteract event) {
@@ -25,7 +33,10 @@ public class HorseFeedingEvent {
 
                 var level = event.getLevel();
                 var rand = level.getRandom();
-                var i = rand.nextInt(2, 10);
+                var i = weightedProbability.getRandomValue(rand).orElse(9);
+
+                if (!horse.getAttributes().hasAttribute(Attributes.MOVEMENT_SPEED)) return;
+
                 var speed = horse.getAttribute(Attributes.MOVEMENT_SPEED);
                 var speedModifier = new AttributeModifier(HORSE_SLUGMO_MODIFIER_UUID, "Slugmo Bean bonus",
                         (double) i /10, AttributeModifier.Operation.MULTIPLY_BASE);
