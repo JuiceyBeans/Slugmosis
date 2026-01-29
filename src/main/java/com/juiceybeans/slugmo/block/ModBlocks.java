@@ -5,6 +5,7 @@ import com.juiceybeans.slugmo.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
@@ -48,6 +49,9 @@ public class ModBlocks {
                             .instabreak()
                             .sound(SoundType.CROP)
                             .pushReaction(PushReaction.DESTROY)));
+
+    public static final RegistryObject<AllayFountainBlock> ALLAY_FOUNTAIN = BLOCKS.register("allay_fountain", () ->
+            new AllayFountainBlock(BlockBehaviour.Properties.copy(Blocks.QUARTZ_PILLAR)));
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
