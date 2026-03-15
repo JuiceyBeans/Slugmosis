@@ -48,8 +48,9 @@ public class ModLootTableProvider extends LootTableProvider {
         }
 
         @Override
-        protected void generate()
-        {
+        protected void generate() {
+            this.dropSelf(ModBlocks.LIGHTNING_AGITATOR.get());
+            
             LootItemCondition.Builder slugmoBeansLootItemCondition = LootItemBlockStatePropertyCondition
                     .hasBlockStateProperties(ModBlocks.SLUGMO_BEANS.get())
                     .setProperties(StatePropertiesPredicate.Builder.properties()
