@@ -19,8 +19,10 @@ import java.util.List;
 public class WorldgenModificationEvent {
 
     /**
-     * Datapack registries are loaded by this point
-     * So we can inject our custom worldgen stuff here to maintain compat with vanilla and other mods
+     * Datapack registries are loaded by this point,
+     * so we can inject our custom worldgen stuff here to maintain compat with vanilla and other mods.<br><br>
+     * It's not ideal, but it'll do for now.
+     * If you're someone reading this who knows a better way, let me know
      */
     @SubscribeEvent
     public static void onServerAboutToStart(ServerAboutToStartEvent event) {
