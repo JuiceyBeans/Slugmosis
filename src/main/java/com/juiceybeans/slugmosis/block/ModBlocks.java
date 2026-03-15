@@ -7,6 +7,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -15,6 +17,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Supplier;
+import java.util.function.ToIntFunction;
 
 public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Slugmosis.MOD_ID);
@@ -49,7 +52,21 @@ public class ModBlocks {
                             .sound(SoundType.CROP)
                             .pushReaction(PushReaction.DESTROY)));
 
+    public static final RegistryObject<Block> LIGHTNING_AGITATOR = registerBlock("lightning_agitator", () ->
+            new LightningAgitatorBlock(
+                    BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.STONE)
+                            .lightLevel(agitatorEmission())
+                            .instrument(NoteBlockInstrument.BASEDRUM)
+                            .requiresCorrectToolForDrops()
+                            .strength(3.5F)));
+
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
+    }
+
+    private static ToIntFunction<BlockState> agitatorEmission() {
+        return (state) -> state.getValue(LightningAgitatorBlock.POWERED) &&
+                !state.getValue(LightningAgitatorBlock.SHORT_CIRCUITED) ? 15 : 0;
     }
 }
