@@ -15,7 +15,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     @Override
     protected void buildRecipes(Consumer<FinishedRecipe> provider) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.VESPERTINE_SWORD.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.VESPERTINE_SWORD.get())
                 .pattern("V")
                 .pattern("V")
                 .pattern("s")
