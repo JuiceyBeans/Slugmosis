@@ -63,14 +63,25 @@ public class ModBlockStateProvider extends BlockStateProvider {
         this.getVariantBuilder(block)
                 .forAllStatesExcept(state -> {
                     boolean isPowered = state.getValue(powered);
-                    String topTexureName = getBlockName(block) + "_top" + (isPowered ? "_powered" : "");
+                    boolean isShortCircuited = state.getValue(shortCircuited);
+
+                    String modelName;
+                    String topTextureName;
+
+                    if (isShortCircuited) {
+                        modelName = "lightning_agitator";
+                        topTextureName = "lightning_agitator_top";
+                    } else {
+                        modelName = isPowered ? "lightning_agitator_powered" : "lightning_agitator";
+                        topTextureName = getBlockName(block) + "_top" + (isPowered ? "_powered" : "");
+                    }
 
                     return ConfiguredModel.builder().modelFile(models()
-                                    .cubeTop(isPowered ? "lightning_agitator_powered" : "lightning_agitator",
+                                    .cubeTop(modelName,
                                             TextureMapping.getBlockTexture(Blocks.FURNACE).withSuffix("_side"),
-                                            Slugmosis.id("block/" + topTexureName)))
+                                            Slugmosis.id("block/" + topTextureName)))
                             .build();
-                }, shortCircuited);
+                });
 
         simpleBlockItem(block, models().getExistingFile(Slugmosis.id("block/lightning_agitator")));
     }

@@ -1,10 +1,16 @@
 {
   "variants": {
-    "powered=false": {
+    "powered=false,short_circuited=false": {
       "model": "slugmosis:block/lightning_agitator"
     },
-    "powered=true": {
+    "powered=false,short_circuited=true": {
+      "model": "slugmosis:block/lightning_agitator"
+    },
+    "powered=true,short_circuited=false": {
       "model": "slugmosis:block/lightning_agitator_powered"
+    },
+    "powered=true,short_circuited=true": {
+      "model": "slugmosis:block/lightning_agitator"
     }
   }
 }
