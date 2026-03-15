@@ -35,5 +35,7 @@ public abstract class ModLangProvider extends LanguageProvider {
 
     private void addLang() {
         add("itemGroup.slugmosis.slugmo_tab", "Slugmosis Items");
+        add("config.jade.plugin_slugmosis.lightning_agitator_info", "Lightning Agitator Info");
+        add("slugmosis.jade.lightning_agitator.short_circuited", "§cShort circuited!");
     }
 }

@@ -1,5 +1,6 @@
 {
   "block.slugmosis.lightning_agitator": "Lightning Agitator",
+  "config.jade.plugin_slugmosis.lightning_agitator_info": "Lightning Agitator Info",
   "item.slugmosis.glowshroom_stem": "Glowshroom Stem",
   "item.slugmosis.shimmering_slugmo_beans": "Shimmering Slugmo Beans",
   "item.slugmosis.skyreaver": "Skyreaver",
@@ -14,5 +15,6 @@
   "item.slugmosis.vespertine_pickaxe": "Vespertine Pickaxe",
   "item.slugmosis.vespertine_shovel": "Vespertine Shovel",
   "item.slugmosis.vespertine_sword": "Vespertine Sword",
-  "itemGroup.slugmosis.slugmo_tab": "Slugmosis Items"
+  "itemGroup.slugmosis.slugmo_tab": "Slugmosis Items",
+  "slugmosis.jade.lightning_agitator.short_circuited": "§cShort circuited!"
 }
