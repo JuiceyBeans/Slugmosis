@@ -5,8 +5,13 @@ import com.juiceybeans.slugmosis.util.MobUtils;
 import com.sun.jna.platform.win32.WinDef;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
+import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -18,11 +23,14 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
 import java.util.WeakHashMap;
+import java.util.function.Supplier;
 
 public class LightningAgitatorBlock extends Block {
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
@@ -82,6 +90,19 @@ public class LightningAgitatorBlock extends Block {
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
         pBuilder.add(POWERED, SHORT_CIRCUITED);
+    }
+
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+        Supplier<Vec3> supplier = () -> new Vec3(
+                Mth.nextDouble(random, -0.005F, 0.005F),
+                Mth.nextDouble(random, -0.005F, 0.005F),
+                Mth.nextDouble(random, -0.005F, 0.005F));
+
+        if (state.getValue(POWERED) && level.random.nextInt(200) <= level.getGameTime() % 200L &&
+                pos.getY() == level.getHeight(Heightmap.Types.WORLD_SURFACE, pos.getX(), pos.getZ()) - 1) {
+            ParticleUtils.spawnParticlesOnBlockFace(level, pos, ParticleTypes.ELECTRIC_SPARK,
+                    UniformInt.of(1, 2), Direction.UP, supplier, 0.65D);
+        }
     }
 
     private static boolean isToggledTooFrequently(Level level, BlockPos pos, boolean logToggle) {
