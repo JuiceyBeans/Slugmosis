@@ -37,7 +37,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
         this.squareStageBlock(ModBlocks.SLUGMO_BEANS.get(), SlugmoBeanBlock.AGE);
         this.crossStageBlock(ModBlocks.GLOWSHROOM_STEM.get(), GlowshroomStemBlock.AGE);
-        this.createLightningAgitatorBlock(ModBlocks.LIGHTNING_AGITATOR.get(), LightningAgitatorBlock.POWERED, LightningAgitatorBlock.TRIGGERED);
+        this.createLightningAgitatorBlock(ModBlocks.LIGHTNING_AGITATOR.get(), LightningAgitatorBlock.POWERED);
     }
 
     private String getBlockName(Block block) {
@@ -69,14 +69,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 }, ignored);
     }
 
-    public void createLightningAgitatorBlock(Block block, BooleanProperty powered, BooleanProperty triggered) {
+    public void createLightningAgitatorBlock(Block block, BooleanProperty powered) {
         this.getVariantBuilder(block)
                 .forAllStatesExcept(state -> {
                     String poweredSuffix = state.getValue(powered) ? "_powered" : "";
-                    String triggeredSuffix = state.getValue(triggered) ? "_triggered" : "";
-
                     String topName = getBlockName(block) + "_top" + poweredSuffix;
-                    if (state.getValue(powered)) topName = topName + triggeredSuffix;
 
                     return ConfiguredModel.builder().modelFile(models()
                                     .cubeTop(topName,

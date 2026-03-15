@@ -2,6 +2,7 @@ package com.juiceybeans.slugmosis.block;
 
 import com.google.common.collect.Lists;
 import com.juiceybeans.slugmosis.util.MobUtils;
+import com.sun.jna.platform.win32.WinDef;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -25,16 +26,15 @@ import java.util.WeakHashMap;
 
 public class LightningAgitatorBlock extends Block {
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
-    public static final BooleanProperty TRIGGERED = BlockStateProperties.TRIGGERED;
+    public static final BooleanProperty SHORT_CIRCUITED = BooleanProperty.create("short_circuited");
     private static final Map<BlockGetter, List<LightningAgitatorBlock.Toggle>> RECENT_TOGGLES = new WeakHashMap<>();
     public static final int RECENT_TOGGLE_TIMER = 60;
-    public static final int MAX_RECENT_TOGGLES = 8;
-    public static final int RESTART_DELAY = 160;
+    public static final int MAX_RECENT_TOGGLES = 4;
     private static final int TOGGLE_DELAY = 4;
 
     public LightningAgitatorBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.defaultBlockState().setValue(POWERED, Boolean.FALSE).setValue(TRIGGERED, Boolean.FALSE));
+        this.registerDefaultState(this.defaultBlockState().setValue(POWERED, Boolean.FALSE).setValue(SHORT_CIRCUITED, Boolean.FALSE));
     }
 
     @Nullable
@@ -44,13 +44,16 @@ public class LightningAgitatorBlock extends Block {
 
     public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos neighborPos, boolean movedByPiston) {
         if (!level.isClientSide) {
-            boolean flag = state.getValue(POWERED);
-            if (flag != level.hasNeighborSignal(pos)) {
-                if (flag) {
-                    level.scheduleTick(pos, this, TOGGLE_DELAY);
-                } else {
-                    level.setBlock(pos, state.cycle(POWERED), 2);
-                }
+            boolean isShortCircuited = state.getValue(SHORT_CIRCUITED);
+            if (isShortCircuited) return;
+
+            boolean isPowered = state.getValue(POWERED);
+
+            if (!isPowered && level.hasNeighborSignal(pos)) {
+                level.scheduleTick(pos, this, TOGGLE_DELAY);
+                level.setBlock(pos, state.cycle(POWERED), 2);
+            } else if (isPowered && !level.hasNeighborSignal(pos)) {
+                level.setBlock(pos, state.cycle(POWERED), 2);
             }
         }
     }
@@ -58,29 +61,27 @@ public class LightningAgitatorBlock extends Block {
     public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         List<LightningAgitatorBlock.Toggle> toggles = RECENT_TOGGLES.get(level);
 
-        while(toggles != null && !toggles.isEmpty() && level.getGameTime() - (toggles.get(0)).when > (long) RECENT_TOGGLE_TIMER) {
+        while (toggles != null && !toggles.isEmpty() && level.getGameTime() - (toggles.get(0)).when > (long) RECENT_TOGGLE_TIMER) {
             toggles.remove(0);
         }
 
         if (state.getValue(POWERED)) {
             if (!level.hasNeighborSignal(pos)) {
-                level.setBlock(pos, state.cycle(POWERED).setValue(TRIGGERED, state.getValue(POWERED) && state.getValue(TRIGGERED)), 2);
+                level.setBlock(pos, state.cycle(POWERED), 2);
             }
 
             if (isToggledTooFrequently(level, pos, true)) {
-                level.levelEvent(1502, pos, 0);
-                level.scheduleTick(pos, level.getBlockState(pos).getBlock(), RESTART_DELAY);
+                level.setBlock(pos, state.setValue(SHORT_CIRCUITED, true), 2);
             }
 
-            if (!state.getValue(TRIGGERED) && !isToggledTooFrequently(level, pos, false)) {
+            if (state.getValue(POWERED) && !state.getValue(SHORT_CIRCUITED) && !isToggledTooFrequently(level, pos, false)) {
                 MobUtils.spawnEntityAtPosition(new LightningBolt(EntityType.LIGHTNING_BOLT, level), level, pos.above());
-                level.setBlock(pos, state.cycle(TRIGGERED), 2);
             }
         }
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(POWERED, TRIGGERED);
+        pBuilder.add(POWERED, SHORT_CIRCUITED);
     }
 
     private static boolean isToggledTooFrequently(Level level, BlockPos pos, boolean logToggle) {

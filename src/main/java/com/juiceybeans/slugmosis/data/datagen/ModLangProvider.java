@@ -34,6 +34,6 @@ public abstract class ModLangProvider extends LanguageProvider {
     }
 
     private void addLang() {
-        add("itemGroup.slugmo.slugmo_tab", "Slugmo Items");
+        add("itemGroup.slugmosis.slugmo_tab", "Slugmosis Items");
     }
 }
