@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "V": {
+      "item": "slugmosis:vespertine"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "V",
+    "V",
+    "s"
+  ],
+  "result": {
+    "item": "slugmosis:vespertine_sword"
+  },
+  "show_notification": true
+}

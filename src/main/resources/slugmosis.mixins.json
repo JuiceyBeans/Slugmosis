@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "package": "com.juiceybeans.slugmosis.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "slugmosis.refmap.json",
+  "minVersion": "0.8",
+  "plugin": "com.juiceybeans.slugmosis.mixin.SlugmoMixinPlugin",
+  "mixins": [
+    "JadeHorseMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
