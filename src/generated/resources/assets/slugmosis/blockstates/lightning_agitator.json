@@ -1,10 +1,10 @@
 {
   "variants": {
     "powered=false": {
-      "model": "slugmosis:block/lightning_agitator_top"
+      "model": "slugmosis:block/lightning_agitator"
     },
     "powered=true": {
-      "model": "slugmosis:block/lightning_agitator_top_powered"
+      "model": "slugmosis:block/lightning_agitator"
     }
   }
 }
