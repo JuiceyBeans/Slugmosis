@@ -98,7 +98,8 @@ public class LightningAgitatorBlock extends Block {
                 Mth.nextDouble(random, -0.005F, 0.005F),
                 Mth.nextDouble(random, -0.005F, 0.005F));
 
-        if (state.getValue(POWERED) && level.random.nextInt(200) <= level.getGameTime() % 200L &&
+        if (state.getValue(POWERED) && !state.getValue(SHORT_CIRCUITED) &&
+                level.random.nextInt(200) <= level.getGameTime() % 200L &&
                 pos.getY() == level.getHeight(Heightmap.Types.WORLD_SURFACE, pos.getX(), pos.getZ()) - 1) {
             ParticleUtils.spawnParticlesOnBlockFace(level, pos, ParticleTypes.ELECTRIC_SPARK,
                     UniformInt.of(1, 2), Direction.UP, supplier, 0.65D);
