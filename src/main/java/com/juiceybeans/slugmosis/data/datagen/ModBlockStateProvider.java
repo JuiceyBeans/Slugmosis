@@ -62,11 +62,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
     public void createLightningAgitatorBlock(Block block, BooleanProperty powered, BooleanProperty shortCircuited) {
         this.getVariantBuilder(block)
                 .forAllStatesExcept(state -> {
-                    String poweredSuffix = state.getValue(powered) ? "_powered" : "";
-                    String topTexureName = getBlockName(block) + "_top" + poweredSuffix;
+                    boolean isPowered = state.getValue(powered);
+                    String topTexureName = getBlockName(block) + "_top" + (isPowered ? "_powered" : "");
 
                     return ConfiguredModel.builder().modelFile(models()
-                                    .cubeTop("lightning_agitator",
+                                    .cubeTop(isPowered ? "lightning_agitator_powered" : "lightning_agitator",
                                             TextureMapping.getBlockTexture(Blocks.FURNACE).withSuffix("_side"),
                                             Slugmosis.id("block/" + topTexureName)))
                             .build();

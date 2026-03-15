@@ -4,7 +4,7 @@
       "model": "slugmosis:block/lightning_agitator"
     },
     "powered=true": {
-      "model": "slugmosis:block/lightning_agitator"
+      "model": "slugmosis:block/lightning_agitator_powered"
     }
   }
 }
