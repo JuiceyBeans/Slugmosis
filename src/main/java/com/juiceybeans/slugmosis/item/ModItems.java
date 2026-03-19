@@ -41,6 +41,8 @@ public class ModItems {
     // Weapons
     public static final RegistryObject<Item> SKYREAVER = ITEMS.register("skyreaver",
             SkyreaverItem::new);
+    public static final RegistryObject<Item> SHREDDER = ITEMS.register("shredder",
+            ShredderItem::new);
 
     // Vespertine
     public static final RegistryObject<Item> VESPERTINE_SWORD = ITEMS.register("vespertine_sword",
