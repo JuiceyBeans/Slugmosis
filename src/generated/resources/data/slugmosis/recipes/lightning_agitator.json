@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "C": {
+      "tag": "forge:cobblestone"
+    },
+    "R": {
+      "item": "minecraft:lightning_rod"
+    },
+    "S": {
+      "item": "minecraft:smooth_stone"
+    },
+    "T": {
+      "type": "forge:partial_nbt",
+      "item": "minecraft:trident",
+      "nbt": "{Enchantments:[{id:\"minecraft:channeling\",lvl:1}]}"
+    }
+  },
+  "pattern": [
+    "CRC",
+    "CTC",
+    "SSS"
+  ],
+  "result": {
+    "item": "slugmosis:lightning_agitator"
+  },
+  "show_notification": true
+}

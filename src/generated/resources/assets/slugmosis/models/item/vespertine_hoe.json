@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "slugmosis:item/vespertine_hoe"
+  }
+}

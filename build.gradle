@@ -52,6 +52,8 @@ minecraft {
 
         client {
             property 'forge.enabledGameTestNamespaces', mod_id
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
         }
 
         server {
@@ -69,31 +71,32 @@ minecraft {
             args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
         }
     }
+
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 }
 
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
-    maven { // CF
+    maven { // CurseForge
         url "https://www.cursemaven.com"
     }
     maven { // Modrinth
         url "https://api.modrinth.com/maven"
     }
-    maven {
-        // EMI
+    maven { // EMI
         url "https://maven.terraformersmc.com"
     }
     maven { // GeckoLib
-        url "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/"
+        url "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven"
         content {
             includeGroupByRegex("software\\.bernie.*")
             includeGroup("com.eliotlash.mclib")
         }
     }
-    maven { // AppleSkin
-        url "https://maven.ryanliptak.com/"
+    maven { // Configuration
+        url "https://api.repsy.io/mvn/toma/public/"
     }
     mavenLocal()
 }
@@ -102,14 +105,15 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     annotationProcessor "org.spongepowered:mixin:0.8.7:processor"
 
-    // Commented out temporarily since it causes runClient to crash
-    //implementation ("curse.maven:configuration-444699:${project.configuration_version}")
+    //implementation("dev.toma.configuration:configuration-${minecraft_version}:${configuration_version}-forge")
     implementation fg.deobf("software.bernie.geckolib:geckolib-forge-${minecraft_version}:${geckolib_version}")
     implementation("com.eliotlash.mclib:mclib:20")
 
+    implementation fg.deobf("maven.modrinth:jade:${jade_version}+forge")
+
     runtimeOnly fg.deobf("dev.emi:emi-forge:${emi_version}+${minecraft_version}")
     runtimeOnly fg.deobf("maven.modrinth:jade:${jade_version}+forge")
-    runtimeOnly fg.deobf("squeek.appleskin:appleskin-forge:mc${minecraft_version}-${appleskin_version}")
+    // runtimeOnly fg.deobf("squeek.appleskin:appleskin-forge:${appleskin_version}")
 }
 
 mixin {
@@ -124,8 +128,8 @@ tasks.named('processResources', ProcessResources).configure {
             forge_version          : forge_version, forge_version_range: forge_version_range,
             loader_version_range   : loader_version_range,
             mod_id                 : mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
-            mod_authors            : mod_authors, mod_description: mod_description,
-            geckolib_version_range : "[4.7.0, ${geckolib_version}]"
+            mod_authors            : mod_authors, mod_description: mod_description, mod_credits: mod_credits,
+            geckolib_version_range : "[4.0, 5.0)"
     ]
 
     inputs.properties replaceProperties
@@ -151,4 +155,11 @@ tasks.named('jar', Jar).configure {
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
+}
+
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
 }
