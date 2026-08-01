@@ -118,4 +118,9 @@ run-data/
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
 !gradle-wrapper.jar
 
+# Art files
+*.bbmodel
+*.xcf
+*.ase
+
 src/generated/resources/.cache/
