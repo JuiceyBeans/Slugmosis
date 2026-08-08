@@ -18,6 +18,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         handheldItem(ModItems.SKYREAVER);
+        handheldItem(ModItems.SHREDDER);
         handheldItem(ModItems.VESPERTINE_AXE);
         handheldItem(ModItems.VESPERTINE_HOE);
         handheldItem(ModItems.VESPERTINE_PICKAXE);
